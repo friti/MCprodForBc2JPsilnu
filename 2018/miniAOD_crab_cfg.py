@@ -37,6 +37,7 @@ process.source = cms.Source("PoolSource",
 process.options = cms.untracked.PSet(
 
 )
+process.source.duplicateCheckMode = cms.untracked.string('noDuplicateCheck')
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
@@ -158,7 +159,7 @@ from PhysicsTools.PatAlgos.tools.helpers import associatePatAlgosToolsTask
 associatePatAlgosToolsTask(process)
 
 #Setup FWK for multithreaded
-process.options.numberOfThreads=cms.untracked.uint32(2)
+#process.options.numberOfThreads=cms.untracked.uint32(2)
 process.options.numberOfStreams=cms.untracked.uint32(0)
 
 # customisation of the process.
