@@ -15,6 +15,8 @@ To run the AOD production, modify the settings in `crab_AOD_prod.py` to your nee
  
 ```
 cd $CMSSW_BASE/src/MCprodForBc2JPsilnu/2018/
+cmsenv
+source /cvmfs/cms.cern.ch/crab3/crab.sh
 crab submit crab_AOD_prod.py 
 ```
 at this point a CRAB_PROJ_DIR  should be created.
@@ -24,10 +26,12 @@ check the status submission with :
 and resubmit :
 `crab resubmit CRAB_PROJ_DIR`
 
-The `crab status` also lists the output_dataset_name, which needs to be written in  `config.Data.inputDataset='output_dataset_name'`  in c`rab_miniAOD_prod.py`. Modify also the settings for your needs for the number of events and storage on the T2 where you have writing rights. 
+The `crab status` also lists the output_dataset_name, which needs to be written in  `config.Data.inputDataset='output_dataset_name'`  in `crab_miniAOD_prod.py`. Modify also the settings for your needs for the number of events and storage on the T2 where you have writing rights. 
 To run the miniAOD production:
 
 ```
+cmsenv
+source /cvmfs/cms.cern.ch/crab3/crab.sh
 crab submit crab_AOD_prod.py 
 ```
 again it is possible to use the `crab status` and `crab submit`.
