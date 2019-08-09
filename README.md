@@ -32,7 +32,7 @@ To run the miniAOD production:
 ```
 cmsenv
 source /cvmfs/cms.cern.ch/crab3/crab.sh
-crab submit crab_AOD_prod.py 
+crab submit crab_miniAOD_prod.py 
 ```
 again it is possible to use the `crab status` and `crab submit`.
 
