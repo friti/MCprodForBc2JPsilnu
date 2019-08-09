@@ -26,7 +26,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(2000)
+    input = cms.untracked.int32(500000)
 )
 
 # Input source
@@ -176,6 +176,11 @@ process = addMonitoring(process)
 # End of customisation functions
 
 # Customisation from command line
+import os,random
+random.seed = os.urandom(10000)#10 #~10^14
+process.RandomNumberGeneratorService.externalLHEProducer.initialSeed = random.randint(0,100000000)
+process.RandomNumberGeneratorService.generator.initialSeed = random.randint(0,100000000)
+print "random.seed ", random.seed  
 
 # Add early deletion of temporary data products to reduce peak memory need
 from Configuration.StandardSequences.earlyDeleteSettings_cff import customiseEarlyDelete
