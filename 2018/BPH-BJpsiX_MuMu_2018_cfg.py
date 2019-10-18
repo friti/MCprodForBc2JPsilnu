@@ -26,7 +26,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(500000)
+    input = cms.untracked.int32(100000)
 )
 
 # Input source
@@ -56,7 +56,7 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
         filterName = cms.untracked.string('')
     ),
     eventAutoFlushCompressedSize = cms.untracked.int32(20971520),
-    fileName = cms.untracked.string('file:BPH-RunIIFall17GS-00077.root'),
+    fileName = cms.untracked.string('file:GS1.root'),
     outputCommands = process.RAWSIMEventContent.outputCommands,
     splitLevel = cms.untracked.int32(0)
 )
@@ -73,6 +73,12 @@ process.bfilter = cms.EDFilter("PythiaFilter",
     MaxEta = cms.untracked.double(3.0),
     MinEta = cms.untracked.double(-3.0),
     ParticleID = cms.untracked.int32(5)
+)
+process.Jpsifilter = cms.EDFilter("PythiaFilter",
+    MaxEta = cms.untracked.double(3.0),
+    MinEta = cms.untracked.double(-3.0),
+    MinPt = cms.untracked.double(7.0), 
+    ParticleID = cms.untracked.int32(443)
 )
 
 
@@ -137,14 +143,14 @@ process.mumugenfilter = cms.EDFilter("MCParticlePairFilter",
     MinEta = cms.untracked.vdouble(-2.5, -2.5),
     MinInvMass = cms.untracked.double(2.0),
     MinP = cms.untracked.vdouble(0.0, 0.0),
-    MinPt = cms.untracked.vdouble(0.5, 0.5),
+    MinPt = cms.untracked.vdouble(3.5,3.5), #(0.5, 0.5),
     ParticleCharge = cms.untracked.int32(-1),
     ParticleID1 = cms.untracked.vint32(13),
     ParticleID2 = cms.untracked.vint32(13),
     Status = cms.untracked.vint32(1, 1)
 )
 
-process.ProductionFilterSequence = cms.Sequence(process.generator+process.bfilter+process.mumugenfilter)
+process.ProductionFilterSequence = cms.Sequence(process.generator+process.bfilter+process.Jpsifilter+process.mumugenfilter)
 
 # Path and EndPath definitions
 process.generation_step = cms.Path(process.pgen)
