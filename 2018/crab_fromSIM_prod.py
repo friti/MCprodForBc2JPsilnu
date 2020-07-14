@@ -15,7 +15,7 @@ config.JobType.pluginName = 'Analysis'
 
 config.Data.inputDataset = '/BBbarToJpsiMu3Mu3PlusX_TuneCP5_13TeV-pythia8/friti-RunIISummer19UL18GEN-a8f71ab9fd4d4356d5029de29bb32fbd/USER'
 
-config.JobType.inputFiles = ['run_crab_TOT_prod.sh', 'BTV-RunIISummer19UL18SIM-00025_1_cfg.py','BTV-RunIISummer19UL18DIGIPremix-00025_1_cfg.py','BTV-RunIISummer19UL18HLT-00025_1_cfg.py','BTV-RunIISummer19UL18RECO-00025_1_cfg.py','BTV-RunIISummer19UL18MiniAOD-00025_1_cfg.py']
+config.JobType.inputFiles = ['run_crab_TOT_prod.sh', 'BTV-RunIISummer19UL18SIM-00025_1_cfg.py','BTV-RunIISummer19UL18DIGIPremix-00025_1_cfg.py','puUL.py','BTV-RunIISummer19UL18HLT-00025_1_cfg.py','BTV-RunIISummer19UL18RECO-00025_1_cfg.py','BTV-RunIISummer19UL18MiniAOD-00025_1_cfg.py']
 
 config.Data.inputDBS = 'phys03'
 config.Data.splitting = 'FileBased'
