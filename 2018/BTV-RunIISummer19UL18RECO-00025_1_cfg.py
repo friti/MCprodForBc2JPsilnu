@@ -31,7 +31,7 @@ process.maxEvents = cms.untracked.PSet(
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:step1_DIGI2RAW.root'),
+    fileNames = cms.untracked.vstring('file:BTV-RunIISummer19UL18HLT-00025.root'),
     secondaryFileNames = cms.untracked.vstring()
 )
 

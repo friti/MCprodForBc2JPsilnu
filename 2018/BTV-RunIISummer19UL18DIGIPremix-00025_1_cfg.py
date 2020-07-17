@@ -33,7 +33,7 @@ process.maxEvents = cms.untracked.PSet(
 # Input source
 process.source = cms.Source("PoolSource",
     dropDescendantsOfDroppedBranches = cms.untracked.bool(False),
-    fileNames = cms.untracked.vstring('file:step1_SIM.root'),
+    fileNames = cms.untracked.vstring('file:BTV-RunIISummer19UL18SIM-00025.root'),
     inputCommands = cms.untracked.vstring(
         'keep *', 
         'drop *_genParticles_*_*', 
@@ -62,7 +62,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('step1 nevts:2000'),
+    annotation = cms.untracked.string('step1 nevts:-1'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -85,7 +85,10 @@ process.PREMIXRAWoutput = cms.OutputModule("PoolOutputModule",
 from puUL import puListFull
 import random
 random.shuffle(puListFull)
-puList= puListFull[0:20]
+puList_tmp= puListFull[0:20]
+puList = []
+for i in range(len(puList_tmp)):
+    puList.append('root://cms-xrd-global.cern.ch//'+puList_tmp[i])
 
 #process.mix.digitizers = cms.PSet(process.theDigitizersMixPreMix)
 process.mixData.input.fileNames = cms.untracked.vstring(puList)
