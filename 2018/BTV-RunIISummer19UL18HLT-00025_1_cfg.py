@@ -2,12 +2,12 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: step1 --fileout file:BTV-RunIISummer19UL18HLT-00025.root --mc --eventcontent RAWSIM --datatier GEN-SIM-RAW --conditions 102X_upgrade2018_realistic_v15 --customise_commands process.source.bypassVersionCheck = cms.untracked.bool(True) --step HLT:2018v32 --nThreads 8 --geometry DB:Extended --era Run2_2018 --python_filename BTV-RunIISummer19UL18HLT-00025_1_cfg.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 1858
+# with command line options: step1 --fileout file:BTV-RunIISummer19UL18HLT-00025.root --mc --eventcontent RAWSIM --datatier GEN-SIM-RAW --conditions 102X_upgrade2018_realistic_v15 --customise_commands process.source.bypassVersionCheck = cms.untracked.bool(True) --step HLT:GRun --nThreads 8 --geometry DB:Extended --era Run2_2018 --python_filename BTV-RunIISummer19UL18HLT-00025_1_cfg.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring
 import FWCore.ParameterSet.Config as cms
 
-from Configuration.StandardSequences.Eras import eras
+from Configuration.Eras.Era_Run2_2018_cff import Run2_2018
 
-process = cms.Process('HLT',eras.Run2_2018)
+process = cms.Process('HLT',Run2_2018)
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')
@@ -17,17 +17,17 @@ process.load('Configuration.EventContent.EventContent_cff')
 process.load('SimGeneral.MixingModule.mixNoPU_cfi')
 process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
 process.load('Configuration.StandardSequences.MagneticField_cff')
-process.load('/afs/cern.ch/user/f/friti/MCprodForbbarX/CMSSW_10_6_5/python/HLT_2018v32_cff.py')
+process.load('HLTrigger.Configuration.HLT_2018v32_cff')
 process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(-1)
+    input = cms.untracked.int32(1)
 )
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:BTV-RunIISummer19UL18SIM-00025.root'),
+    fileNames = cms.untracked.vstring('file:BTV-RunIISummer19UL18DIGIPremix-00025.root'),
     secondaryFileNames = cms.untracked.vstring()
 )
 
@@ -37,7 +37,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('step1 nevts:-1'),
+    annotation = cms.untracked.string('step1 nevts:1'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -75,8 +75,9 @@ from PhysicsTools.PatAlgos.tools.helpers import associatePatAlgosToolsTask
 associatePatAlgosToolsTask(process)
 
 #Setup FWK for multithreaded
-#process.options.numberOfThreads=cms.untracked.uint32(8)
+process.options.numberOfThreads=cms.untracked.uint32(8)
 process.options.numberOfStreams=cms.untracked.uint32(0)
+process.options.numberOfConcurrentLuminosityBlocks=cms.untracked.uint32(1)
 
 # customisation of the process.
 
