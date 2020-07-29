@@ -13,7 +13,7 @@ config.General.transferOutputs = True
 config.JobType.pluginName = 'Analysis'
 config.JobType.psetName = 'BTV-RunIISummer19UL18Premix_-00025_1_cfg.py'
 
-config.Data.inputDataset = '/BBbarToJpsiAllMu3Mu3PlusX_TuneCP5_13TeV-pythia8/friti-RunIISummer19UL18GEN-a8f71ab9fd4d4356d5029de29bb32fbd/USER'
+config.Data.inputDataset = '/BBbarToJpsiAllMu3Mu3PlusX_TuneCP5_13TeV-pythia8/friti-RunIISummer19UL18GEN-67ef982a9e7bfe643632c284cce1d5e3/USER'
 
 config.JobType.inputFiles = ['run_crab_1.sh', 'BTV-RunIISummer19UL18SIM-00025_1_cfg.py','BTV-RunIISummer19UL18DIGIPremix-00025_1_cfg.py','puUL.py']
 config.JobType.scriptExe='run_crab_1.sh'
