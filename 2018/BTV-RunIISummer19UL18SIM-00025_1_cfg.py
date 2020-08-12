@@ -39,7 +39,7 @@ process.configurationMetadata = cms.untracked.PSet(
 )
 
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring( ('root://cms-xrd-global.cern.ch///store/user/friti/crab_job_2020Jun21/BBbarToJpsiAllMu3Mu3PlusX_TuneCP5_13TeV-pythia8/RunIISummer19UL18GEN/200621_092041/0000/BTV-RunIISummer19UL18GEN-00025_481.root', ) ),
+    fileNames = cms.untracked.vstring( ('file:BTV-RunIISummer19UL18GEN-00025.root', ) ),
     secondaryFileNames = cms.untracked.vstring()
 )
  
