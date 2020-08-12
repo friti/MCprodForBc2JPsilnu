@@ -1,7 +1,24 @@
-Retrieve the fragment file by doing
-```
-curl -s --insecure https://gist.githubusercontent.com/sarafiorendi/4de58c6f4dacdce17a565c1521358d3f/raw/e50508576f45c1348a52bd389193a45633f91c1d/BPH-RunIIFall18GS-BcJpsiMuNu-fragment.py  --retry 2 --create-dirs -o ../../Configuration/GenProduction/python/BPH-RunIIFall18GS-BcJpsiMuNu-fragment.py  
+GEN to PREMIX production
 
-curl -s --insecure https://gist.githubusercontent.com/sarafiorendi/bced2afba18dde78f593492300f42b7e/raw/5e61b3845bd62e0383510b355576d50d6e41aff5/BPH-RunIIFall18GS-BcJpsiTauNu-fragment.py --retry 2 --create-dirs -o ../../Configuration/GenProduction/python/BPH-RunIIFall18GS-BcJpsiTauNu-fragment.py
+```
+cmsrel CMSSW_10_6_5
+cd CMSSW_10_6_5/src
+cmsenv
+source /cvmfs/cms.cern.ch/crab3/crab.sh
+git cms-addpkg GeneratorInterface/GenFilters
+git clone git@github.com:friti/MCprodForBc2JPsilnu  
+
+#add the fragment in the right position
+mv MCprodForBc2JPsilnu/2018/Configuration/ .
+
+#modify the ancestors scripts
+mv MCprodForBc2JPsilnu/2018/PythiaFilterMultiMother.cc GeneratorInterface/GenFilters/src/.
+mv MCprodForBc2JPsilnu/2018/PythiaFilterMultiMother.h GeneratorInterface/GenFilters/interface/.
+
+#send on CRAB from GEN to PREMIX
+cd MCprodForBc2JPsilnu/2018/
+crab submit crab_GENtoPREMIX_prd.py
 ```
 
+HLT production needs the CMSSW_10_2_16_UL environment                  
+RECO e MiniAOD CMSSW_10_6_5 environment           
